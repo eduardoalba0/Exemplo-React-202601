@@ -20,7 +20,7 @@ function PageListaTarefas() {
         <div>
             <Titulo>Minhas Tarefas</Titulo>
             <div>
-                {tarefas.map(tarefa => <Tarefa titulo={tarefa.todo} coompletada={tarefa.completed} />)}
+                {tarefas.map(tarefa => <Tarefa titulo={tarefa.todo} completada={tarefa.completed} />)}
             </div>
         </div>
 
