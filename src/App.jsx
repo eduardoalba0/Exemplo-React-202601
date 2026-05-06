@@ -1,9 +1,9 @@
 import './App.css'
-import PageListaTarefas from "./pages/PageListaTarefas.jsx";
+import PageFormulario from "./pages/PageFormulario.jsx";
 
 function App() {
 
-    return <PageListaTarefas />;
+    return <PageFormulario/>;
 }
 
 export default App
