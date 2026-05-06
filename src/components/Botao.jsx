@@ -1,15 +1,11 @@
 import React from "react";
 
 export default function Botao(props) {
-    const [contador, setContador] = React.useState(0)
-    function clickHandler(){
-        console.log(contador)
-        setContador(contador + 1)
-    }
     return (
-        <button className={props.className}
-        onClick={clickHandler}>
-            {props.children + contador}
-        </button>
-    )
+        <button
+            className={`rounded bg-blue-800 text-white shadow-2xl shadow-red-950/50 p-1 ${props.className || ''}`}
+            onClick={props.onClick}
+        >
+            {props.children}
+        </button>    )
 }
