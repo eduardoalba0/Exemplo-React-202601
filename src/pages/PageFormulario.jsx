@@ -11,6 +11,7 @@ function PageFormulario() {
     })
 
     function handleOnChange(event){
+        console.log("onChange")
         const {name, value} = event.target;
         setCliente({
             ...cliente, // copia tudo que ja tem no cliente

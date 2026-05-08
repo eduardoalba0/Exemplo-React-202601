@@ -1,9 +1,9 @@
 import './App.css'
-import PageFormulario from "./pages/PageFormulario.jsx";
+import PageFormularioHook from "./pages/PageFormularioHook.jsx";
 
 function App() {
 
-    return <PageFormulario/>;
+    return <PageFormularioHook/>;
 }
 
 export default App
