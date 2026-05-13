@@ -1,15 +1,15 @@
 import Titulo from "../components/Titulo.jsx";
 import Tarefa from "../components/Tarefa.jsx";
 import React from "react";
+import {clienteService} from "../services/clienteService.js";
 
 function PageListaTarefas() {
     const [tarefas, setTarefas] = React.useState([])
 
     React.useEffect(() => {
         async function listarTarefas(){
-            const response = await fetch("https://dummyjson.com/todos")
-            const data = await response.json();
-            setTarefas(data.todos)
+            const response = await clienteService.listarTodos();
+            console.log(response);
         }
         listarTarefas();
 
