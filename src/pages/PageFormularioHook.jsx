@@ -4,6 +4,7 @@ import Formulario from "../components/Formulario.jsx";
 import InputTextoComLabel from "../components/InputTextoComLabel.jsx";
 import Botao from "../components/Botao.jsx";
 import BotaoSubmit from "../components/BotaoSubmit.jsx";
+import clienteService from "../services/clienteService.js";
 
 function PageFormularioHook() {
     const {
@@ -14,8 +15,18 @@ function PageFormularioHook() {
         }
     } = useForm()
 
+    async function cadastrarCliente(dados){
+        try{
+            await clienteService.cadastrar(dados)
+            alert("Cliente cadastrado com sucesso!")
+        } catch(error){
+            alert("Erro ao cadastrar Cliente.")
+            console.log(error)
+        }
+    }
+
     function onSubmit(dados) {
-        alert(JSON.stringify(dados))
+        cadastrarCliente(dados)
     }
 
     return (
