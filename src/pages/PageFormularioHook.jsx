@@ -2,24 +2,49 @@ import {useForm} from "react-hook-form";
 import Titulo from "../components/Titulo.jsx";
 import Formulario from "../components/Formulario.jsx";
 import InputTextoComLabel from "../components/InputTextoComLabel.jsx";
-import Botao from "../components/Botao.jsx";
+import BotaoContador from "../components/BotaoContador.jsx";
 import BotaoSubmit from "../components/BotaoSubmit.jsx";
 import clienteService from "../services/clienteService.js";
+import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 
 function PageFormularioHook() {
+    const {id} = useParams();
+    const navigate = useNavigate();
     const {
         register, // Interface de manipulação do input
         handleSubmit, // Manipulador do evento de submissão do Form
+        reset,
         formState: { // guarda o estado do form
             errors // erros de validação
         }
     } = useForm()
 
-    async function cadastrarCliente(dados){
-        try{
-            await clienteService.cadastrar(dados)
+    async function buscarCliente() {
+        try {
+            if (id) {
+                const response = await clienteService.buscar(id)
+                reset(response)
+            }
+        } catch (error) {
+            alert(error)
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        buscarCliente();
+    }, []);
+
+    async function cadastrarCliente(dados) {
+        try {
+            if (id)
+                await clienteService.editar(id, dados)
+            else
+                await clienteService.cadastrar(dados)
             alert("Cliente cadastrado com sucesso!")
-        } catch(error){
+            navigate("/clientes")
+        } catch (error) {
             alert("Erro ao cadastrar Cliente.")
             console.log(error)
         }
@@ -48,7 +73,7 @@ function PageFormularioHook() {
                     label="Nome:*" // texto que vai aparecer dentro do label
                     id="nome" // identificador do COMPONENTE dentro da página (DEVE SER ÚNICO)
                     placeholder="Insira seu nome." // texto que vai aparecer dentro do input
-                    error = {errors.nome}
+                    error={errors.nome}
 
                 />
                 <InputTextoComLabel

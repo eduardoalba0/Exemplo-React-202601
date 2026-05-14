@@ -1,5 +1,4 @@
 function InputTextoComLabel(props) {
-    console.log(props)
 
     return (
         <div className="w-full md:w-6/12 space-y-2">
@@ -17,7 +16,8 @@ function InputTextoComLabel(props) {
                     border border-blue-200
                     shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_6px_16px_rgba(37,99,235,0.18)]
                     outline-none
-                "/>
+                "
+            />
             {props.error && <span className="text-red-600">{props.error.message}</span>}
         </div>
     )

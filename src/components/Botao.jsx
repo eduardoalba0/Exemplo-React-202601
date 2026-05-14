@@ -1,15 +1,9 @@
-import React from "react";
-
-export default function Botao(props) {
-    const [contador, setContador] = React.useState(0)
-    function clickHandler(){
-        console.log(contador)
-        setContador(contador + 1)
-    }
+function BotaoSubmit(props) {
     return (
-        <button className={props.className}
-        onClick={clickHandler}>
-            {props.children + contador}
+        <button {...props}
+                className="bg-blue-800 rounded p-2 text-white">
         </button>
     )
 }
+
+export default BotaoSubmit;
