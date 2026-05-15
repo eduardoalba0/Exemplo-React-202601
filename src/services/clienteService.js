@@ -8,6 +8,10 @@ const clienteService = {
     cadastrar: async (cliente) => {
         const response = await api.post("/clientes", cliente)
         return response.data
+    },
+    buscarId: async (id) => {
+        const response = await api.get(`/clientes/${id}`)
+        return response.data
     }
 }
 

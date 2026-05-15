@@ -5,21 +5,46 @@ import InputTextoComLabel from "../components/InputTextoComLabel.jsx";
 import Botao from "../components/Botao.jsx";
 import BotaoSubmit from "../components/BotaoSubmit.jsx";
 import clienteService from "../services/clienteService.js";
+import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 function PageFormularioHook() {
+    const [cliente, setCliente] = useState({})
+    const {id} = useParams()
+    const navigate = useNavigate();
+
     const {
         register, // Interface de manipulação do input
         handleSubmit, // Manipulador do evento de submissão do Form
+        reset, // usamos para definir os valores iniciais dos campos
         formState: { // guarda o estado do form
             errors // erros de validação
         }
     } = useForm()
 
-    async function cadastrarCliente(dados){
-        try{
+    async function buscarCliente() {
+        try {
+            if (id) {
+                const response = await clienteService.buscarId(id)
+                reset(response) // preenche o formulario
+            }
+        } catch (e) {
+            console.log(e)
+            alert("Erro ao buscar cliente.")
+        }
+    }
+
+    useEffect(() => {
+        buscarCliente()
+    }, [])
+
+
+    async function cadastrarCliente(dados) {
+        try {
             await clienteService.cadastrar(dados)
             alert("Cliente cadastrado com sucesso!")
-        } catch(error){
+            navigate("/tarefas")
+        } catch (error) {
             alert("Erro ao cadastrar Cliente.")
             console.log(error)
         }
@@ -48,7 +73,7 @@ function PageFormularioHook() {
                     label="Nome:*" // texto que vai aparecer dentro do label
                     id="nome" // identificador do COMPONENTE dentro da página (DEVE SER ÚNICO)
                     placeholder="Insira seu nome." // texto que vai aparecer dentro do input
-                    error = {errors.nome}
+                    error={errors.nome}
 
                 />
                 <InputTextoComLabel

@@ -1,6 +1,4 @@
 function InputTextoComLabel(props) {
-    console.log(props)
-
     return (
         <div className="w-full md:w-6/12 space-y-2">
             <label htmlFor={props.id}

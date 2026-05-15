@@ -1,9 +1,10 @@
 import './App.css'
-import PageFormularioHook from "./pages/PageFormularioHook.jsx";
+import {RouterProvider} from "react-router-dom";
+import router from './router';
 
 function App() {
 
-    return <PageFormularioHook/>;
+    return (<RouterProvider router={router}/>)
 }
 
 export default App
