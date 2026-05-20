@@ -3,6 +3,7 @@ import Formulario from "../components/Formulario.jsx";
 import Label from "../components/Label.jsx";
 import InputTexto from "../components/InputTexto.jsx";
 import {useState} from "react";
+import PageTemplate from "../components/PageTemplate.jsx";
 
 function PageFormulario() {
     const [cliente, setCliente] = useState({
@@ -25,8 +26,7 @@ function PageFormulario() {
     }
 
     return (
-        <div>
-            <Titulo>Formulário de Cadastro</Titulo>
+        <PageTemplate titulo="Formulário de Cadastro">
             <Formulario onSubmit={handleOnSubmit}>
                 <Label>Nome:</Label>
                 <InputTexto
@@ -44,7 +44,7 @@ function PageFormulario() {
                 />
                 <button type="submit">Enviar</button>
             </Formulario>
-        </div>
+        </PageTemplate>
     )
 
 }

@@ -7,6 +7,7 @@ import BotaoSubmit from "../components/BotaoSubmit.jsx";
 import clienteService from "../services/clienteService.js";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import PageTemplate from "../components/PageTemplate.jsx";
 
 function PageFormularioHook() {
     const [cliente, setCliente] = useState({})
@@ -60,8 +61,7 @@ function PageFormularioHook() {
     }
 
     return (
-        <div>
-            <Titulo>Formulário de Cadastro (Com Hook)</Titulo>
+        <PageTemplate titulo={id ? "Editar Cliente" : "Novo Cliente"}>
             <Formulario onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <InputTextoComLabel
                     {...register("nome", {
@@ -89,7 +89,7 @@ function PageFormularioHook() {
                 />
                 <BotaoSubmit type="submit">Cadastrar</BotaoSubmit>
             </Formulario>
-        </div>
+        </PageTemplate>
     )
 }
 
