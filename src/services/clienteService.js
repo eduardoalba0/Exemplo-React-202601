@@ -12,6 +12,10 @@ const clienteService = {
     buscarId: async (id) => {
         const response = await api.get(`/clientes/${id}`)
         return response.data
+    },
+    atualizar: async (id, cliente) =>{
+        const response = await api.put(`/clientes/${id}`, cliente)
+        return response.data
     }
 }
 

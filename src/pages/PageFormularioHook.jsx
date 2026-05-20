@@ -41,8 +41,13 @@ function PageFormularioHook() {
 
     async function cadastrarCliente(dados) {
         try {
-            await clienteService.cadastrar(dados)
-            alert("Cliente cadastrado com sucesso!")
+            if (id) {
+                await clienteService.atualizar(id, dados)
+                alert("Cliente atualizado com sucesso!")
+            } else {
+                await clienteService.cadastrar(dados)
+                alert("Cliente cadastrado com sucesso!")
+            }
             navigate("/tarefas")
         } catch (error) {
             alert("Erro ao cadastrar Cliente.")
