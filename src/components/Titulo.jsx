@@ -1,6 +1,6 @@
 function Titulo(props) {
     return (
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-blue-600 drop-shadow-sm">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-blue-600 drop-shadow-sm mb-5">
             {props.children}
         </h1>
     )

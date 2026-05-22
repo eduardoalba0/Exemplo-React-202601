@@ -5,7 +5,7 @@ function PageTemplate(props) {
     return (
         <>
             <MenuNavegacao/>
-            <main>
+            <main className="p-4">
                 <Titulo>{props.titulo}</Titulo>
                 {props.children}
             </main>

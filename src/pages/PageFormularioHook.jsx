@@ -2,7 +2,7 @@ import {useForm} from "react-hook-form";
 import Titulo from "../components/Titulo.jsx";
 import Formulario from "../components/Formulario.jsx";
 import InputTextoComLabel from "../components/InputTextoComLabel.jsx";
-import Botao from "../components/Botao.jsx";
+import BotaoContador from "../components/BotaoContador.jsx";
 import BotaoSubmit from "../components/BotaoSubmit.jsx";
 import clienteService from "../services/clienteService.js";
 import {useNavigate, useParams} from "react-router-dom";

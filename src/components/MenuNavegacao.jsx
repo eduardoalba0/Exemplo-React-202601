@@ -8,9 +8,9 @@ function MenuNavegacao(props) {
                      className={({isActive}) => isActive ? "text-blue-300 font-bold" : "text-white"}>
                 Tarefas
             </NavLink>
-            <NavLink to="/clientes/novo"
+            <NavLink to="/clientes/"
                      className={({isActive}) => isActive ? "text-blue-300 font-bold" : "text-white"}>
-                Novo Cliente
+                Clientes
             </NavLink>
         </nav>
     )

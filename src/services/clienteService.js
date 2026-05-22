@@ -16,6 +16,10 @@ const clienteService = {
     atualizar: async (id, cliente) =>{
         const response = await api.put(`/clientes/${id}`, cliente)
         return response.data
+    },
+    remover: async (id) => {
+        const response = await api.delete(`/clientes/${id}`)
+        return response.data
     }
 }
 
