@@ -13,10 +13,22 @@ const clienteService = {
         const response = await api.get(`/clientes/${id}`)
         return response.data
     },
-    atualizar: async (id, cliente) =>{
-        const response = await api.put(`/clientes/${id}`, cliente)
+    atualizar: async (id, cliente, imagem = []) => {
+        const formData = new FormData()
+
+        if (imagem[0]) {
+            formData.append("imagem", imagem[0])
+        }
+        const clienteBlob = new Blob([JSON.stringify(cliente)],
+            {
+                type: "application/json",
+            })
+        formData.append("dados", clienteBlob)
+
+        const response = await api.put(`/clientes/${id}`, formData)
         return response.data
     },
+
     remover: async (id) => {
         const response = await api.delete(`/clientes/${id}`)
         return response.data

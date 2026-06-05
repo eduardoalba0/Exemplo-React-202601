@@ -1,6 +1,9 @@
-function Botao(props){
+function Botao(props) {
     return (
-        <button {...props}></button>
+        <button {...props}
+                className="bg-blue-800 rounded p-2 text-white">
+            {props.children}
+        </button>
     )
 }
 

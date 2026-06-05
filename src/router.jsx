@@ -1,11 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
 import {
     Page404,
-    PageFormulario,
-    PageFormularioHook,
+    PageCadastroCliente,
     PageListaClientes,
-    PageListaTarefas,
-    PagePrincipal, PageVisualizarCliente
+    PageLogin,
+    PagePrincipal,
+    PageVisualizarCliente
 } from "./pages/index.js";
 
 const router = createBrowserRouter([
@@ -15,12 +15,8 @@ const router = createBrowserRouter([
         errorElement: <Page404/>
     },
     {
-        path: "/tarefas",
-        element: <PageListaTarefas/>
-    },
-    {
-        path: "/formulario",
-        element: <PageFormulario/>
+        path: "/login",
+        element: <PageLogin/>,
     },
     {
         path: "/clientes",
@@ -28,7 +24,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/clientes/novo",
-        element: <PageFormularioHook/>
+        element: <PageCadastroCliente/>
     },
     {
         path: "/clientes/:id",
@@ -36,7 +32,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/clientes/:id/editar",
-        element: <PageFormularioHook/>
+        element: <PageCadastroCliente/>
     },
 
 ]);

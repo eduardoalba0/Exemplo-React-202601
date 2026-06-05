@@ -1,10 +1,11 @@
-function InputTextoComLabel(props) {
+function InputComLabel(props) {
     return (
         <div className="w-full md:w-6/12 space-y-2">
             <label htmlFor={props.id}
                    className="block text-sm font-semibold tracking-wide text-blue-700">{props.label}</label>
             <input
                 id={props.id}
+                type={props.type || 'text'}
                 name={props.name} // propriedade do register()
                 placeholder={props.placeholder}
                 ref={props.ref} // propriedade do register()
@@ -22,4 +23,4 @@ function InputTextoComLabel(props) {
 
 }
 
-export default InputTextoComLabel;
+export default InputComLabel;

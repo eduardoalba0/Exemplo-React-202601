@@ -1,15 +1,13 @@
 import {useForm} from "react-hook-form";
-import Titulo from "../components/Titulo.jsx";
 import Formulario from "../components/Formulario.jsx";
-import InputTextoComLabel from "../components/InputTextoComLabel.jsx";
-import BotaoContador from "../components/BotaoContador.jsx";
-import BotaoSubmit from "../components/BotaoSubmit.jsx";
+import InputComLabel from "../components/InputComLabel.jsx";
+import Botao from "../components/Botao.jsx";
 import clienteService from "../services/clienteService.js";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import PageTemplate from "../components/PageTemplate.jsx";
 
-function PageFormularioHook() {
+function PageCadastroCliente() {
     const [cliente, setCliente] = useState({})
     const {id} = useParams()
     const navigate = useNavigate();
@@ -28,6 +26,7 @@ function PageFormularioHook() {
             if (id) {
                 const response = await clienteService.buscarId(id)
                 reset(response) // preenche o formulario
+                setCliente(response)
             }
         } catch (e) {
             console.log(e)
@@ -43,13 +42,18 @@ function PageFormularioHook() {
     async function cadastrarCliente(dados) {
         try {
             if (id) {
-                await clienteService.atualizar(id, dados)
+                let {imagem, ...dadosFormulario} = dados;
+                dadosFormulario = {
+                    ...cliente,
+                    ...dadosFormulario
+                }
+                await clienteService.atualizar(id, dadosFormulario, imagem)
                 alert("Cliente atualizado com sucesso!")
             } else {
                 await clienteService.cadastrar(dados)
                 alert("Cliente cadastrado com sucesso!")
             }
-            navigate("/tarefas")
+            navigate("/")
         } catch (error) {
             alert("Erro ao cadastrar Cliente.")
             console.log(error)
@@ -63,7 +67,7 @@ function PageFormularioHook() {
     return (
         <PageTemplate titulo={id ? "Editar Cliente" : "Novo Cliente"}>
             <Formulario onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <InputTextoComLabel
+                <InputComLabel
                     {...register("nome", {
                         required: "O nome é obrigatório.", // campo obrigatório
                         minLength: {
@@ -75,22 +79,56 @@ function PageFormularioHook() {
                             message: "O nome deve ter no máximo 50 caracteres."
                         },
                     })} // copia todas as props de register e manda pro InputTextoComLabel
-                    label="Nome:*" // texto que vai aparecer dentro do label
+                    label="Nome Completo:*" // texto que vai aparecer dentro do label
                     id="nome" // identificador do COMPONENTE dentro da página (DEVE SER ÚNICO)
                     placeholder="Insira seu nome." // texto que vai aparecer dentro do input
                     error={errors.nome}
 
                 />
-                <InputTextoComLabel
-                    {...register("cpf")}
+                <InputComLabel
+                    {...register("cpf", {
+                        required: "O CPF é obrigatório.", // campo obrigatório
+                        minLength: {
+                            value: 11,
+                            message: "O CPF deve ter 11 caracteres."
+                        },
+                        maxLength: {
+                            value: 11,
+                            message: "O CPF deve ter 11 caracteres."
+                        },
+                    })}
                     label="CPF:*"
                     id="cpf"
                     placeholder="Insira seu CPF."
                 />
-                <BotaoSubmit type="submit">Cadastrar</BotaoSubmit>
+                <InputComLabel
+                    {...register("username", {
+                        required: "O nome de usuário é obrigatório.", // campo obrigatório
+                    })}
+                    label="Nome de usuário:*"
+                    type="text"
+                    id="username"
+                    placeholder="Insira um nome de usuário."
+                />
+                <InputComLabel
+                    {...register("password", {
+                        required: "A senha é obrigatória.", // campo obrigatório
+                    })}
+                    label="Senha:*"
+                    type="password"
+                    id="password"
+                    placeholder="Insira uma senha."
+                />
+                {id && <InputComLabel
+                    {...register("imagem")}
+                    label="Foto:"
+                    id="imagem"
+                    type="file"
+                />}
+                <Botao type="submit">Cadastrar</Botao>
             </Formulario>
         </PageTemplate>
     )
 }
 
-export default PageFormularioHook;
+export default PageCadastroCliente;
