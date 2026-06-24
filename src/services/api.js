@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from "../store.js";
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://exemplo-psai-202601.onrender.com',
     timeout: 10000,
 })
 
