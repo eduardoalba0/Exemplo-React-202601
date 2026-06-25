@@ -17,22 +17,27 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <PageLogin/>,
+        errorElement: <Page404/>
     },
     {
         path: "/clientes",
-        element: <PageListaClientes/>
+        element: <PageListaClientes/>,
+        errorElement: <Page404/>
     },
     {
         path: "/clientes/novo",
-        element: <PageCadastroCliente/>
+        element: <PageCadastroCliente/>,
+        errorElement: <Page404/>
     },
     {
         path: "/clientes/:id",
-        element: <PageVisualizarCliente/>
+        element: <PageVisualizarCliente/>,
+        errorElement: <Page404/>
     },
     {
         path: "/clientes/:id/editar",
-        element: <PageCadastroCliente/>
+        element: <PageCadastroCliente/>,
+        errorElement: <Page404/>
     },
 
 ]);
