@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from "../store.js";
 
 const api = axios.create({
-    baseURL: 'https://exemplo-psai-202601.onrender.com',
+    baseURL: import.meta.env.VITE_API_URL,
     timeout: 10000,
 })
 
